@@ -4,4 +4,5 @@ export type TarefaDaLista = {
   prioridade: string
   descricao: string
   categoria:string
+  data: string
 }

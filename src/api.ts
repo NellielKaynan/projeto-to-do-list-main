@@ -7,7 +7,7 @@ export async function capturaTarefasDaAPI(): Promise<TarefaDaLista[]> {
   return dadosConvertidos
 }
 
-export async function cadastraTarefaNaAPI(titulo: string, prioridade: string,categoria:string, descricao: string) {
+export async function cadastraTarefaNaAPI(titulo: string, prioridade: string,categoria:string, descricao: string,data:string) {
   const resposta = await fetch('http://localhost:3000/tarefas', {
     method: 'POST',
     headers: {
@@ -18,6 +18,7 @@ export async function cadastraTarefaNaAPI(titulo: string, prioridade: string,cat
       prioridade: prioridade,
       categoria:categoria,
       descricao: descricao,
+      data:data
     }),
   })
 

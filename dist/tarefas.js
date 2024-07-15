@@ -15,20 +15,26 @@ export function enviaTarefa(e) {
     const prioridade = document.querySelector('#prioridade').value;
     const descricao = document.querySelector('#descricao').value;
     const categoria = document.querySelector('#categoria').value;
-    cadastraTarefaNaAPI(titulo, prioridade, categoria, descricao);
+    const data = document.querySelector('#data').value;
+    const dataFormatada = new Date(data).toLocaleDateString('pt-br', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    });
+    cadastraTarefaNaAPI(titulo, prioridade, categoria, descricao, dataFormatada);
 }
-function criarTarefa(id, titulo, prioridade, categoria, descricao) {
+function criarTarefa(id, titulo, prioridade, categoria, descricao, data) {
     const tarefa = document.createElement('li');
     tarefa.classList.add('listaTarefa__tarefa');
     tarefa.id = id;
-    //
+    console.log(data);
     const prioridadeCor = `tarefa__prioridade--${PRIORIDADES[prioridade].value}`;
     tarefa.innerHTML = `
    <div class="tarefa__info--column">
     <div class="tarefa__info--row">
       <div class="tarefa__prioridade ${prioridadeCor}">${PRIORIDADES[prioridade].texto}</div>
       <div class="tarefa__categoria">${CATEGORIAS[categoria].texto}</div>
-      <div class="tarefa__data">${new Date().toLocaleDateString()}</div>
+      <div class="tarefa__data">${data}</div>
     </div>
     <div class="tarefa__info--row">
       <div class="tarefa__titulo">${titulo}</div>
@@ -99,7 +105,7 @@ export function listaTarefas() {
         }
         const tarefas = yield capturaTarefasDaAPI();
         tarefas.forEach((element) => {
-            const elementoTarefa = criarTarefa(element.id, element.titulo, element.prioridade, element.categoria, element.descricao);
+            const elementoTarefa = criarTarefa(element.id, element.titulo, element.prioridade, element.categoria, element.descricao, element.data);
             listaDeTarefa.appendChild(elementoTarefa);
         });
         const botoesDeDeletar = document.querySelectorAll('.tarefa__delete');
