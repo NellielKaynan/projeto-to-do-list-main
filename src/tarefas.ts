@@ -1,6 +1,6 @@
-import { cadastraTarefaNaAPI, capturaTarefasDaAPI, deletaTarefaNaAPI } from './api'
-import { PRIORIDADES } from './constantes/constantes'
-import { TarefaDaLista } from './types/tarefaDaLista'
+import { cadastraTarefaNaAPI, capturaTarefasDaAPI, deletaTarefaNaAPI } from './api.js'
+import { PRIORIDADES,CATEGORIAS } from './constantes/constantes.js'
+import { TarefaDaLista } from './types/tarefaDaLista.js'
 
 
 export function enviaTarefa(e: Event): void {
@@ -11,28 +11,31 @@ export function enviaTarefa(e: Event): void {
   const descricao = (
     document.querySelector('#descricao') as HTMLTextAreaElement
   ).value
+  const categoria = (
+    document.querySelector('#categoria') as HTMLTextAreaElement
+  ).value
 
-  cadastraTarefaNaAPI(titulo, prioridade, descricao)
+  cadastraTarefaNaAPI(titulo, prioridade, categoria,descricao)
 }
 
 function criarTarefa(
   id: string,
   titulo: string,
   prioridade: keyof typeof PRIORIDADES,
+  categoria:keyof typeof CATEGORIAS,
   descricao: string
 ): HTMLElement {
   const tarefa = document.createElement('li')
-  tarefa.classList.add('listaDeTarefa__tarefa')
+  tarefa.classList.add('listaTarefa__tarefa')
   tarefa.id = id
   //
   const prioridadeCor = `tarefa__prioridade--${PRIORIDADES[prioridade].value}`
-
   tarefa.innerHTML = `
    <div class="tarefa__info--column">
     <div class="tarefa__info--row">
       <div class="tarefa__prioridade ${prioridadeCor}">${PRIORIDADES[prioridade].texto}</div>
-      <div class="tarefa__category">+++++++++++++</div>
-      <div class="tarefa__date">++++++++++++++</div>
+      <div class="tarefa__categoria">${CATEGORIAS[categoria].texto}</div>
+      <div class="tarefa__data">${new Date().toLocaleDateString()}</div>
     </div>
     <div class="tarefa__info--row">
       <div class="tarefa__titulo">${titulo}</div>
@@ -99,7 +102,7 @@ function criarTarefa(
 
 export async function listaTarefas(): Promise<void> {
   const listaDeTarefa = document.getElementById(
-    'listaDeTarefa'
+    'listaTarefa'
   ) as HTMLUListElement | null
 
   if (!listaDeTarefa) {
@@ -113,6 +116,7 @@ export async function listaTarefas(): Promise<void> {
       element.id,
       element.titulo,
       element.prioridade,
+      element.categoria,
       element.descricao
     )
     listaDeTarefa.appendChild(elementoTarefa)
