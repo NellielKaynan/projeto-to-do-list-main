@@ -1,28 +1,28 @@
 {
   "tarefas": [
     {
-      "id": "add5",
-      "titulo": "TESTE 1",
-      "prioridade": "medio",
-      "categoria": "pessoal",
-      "descricao": "sfdhgr",
-      "data": "21/12/2024"
-    },
-    {
-      "id": "f873",
-      "titulo": "Limpar a casa",
-      "prioridade": "medio",
-      "categoria": "pessoal",
-      "descricao": "Limpar a casa",
-      "data": "21/05/2025"
-    },
-    {
-      "id": "2a9a",
-      "titulo": "Comer na Star Açai",
+      "id": "200e",
+      "titulo": "Estudar CSS",
       "prioridade": "alta",
+      "categoria": "estudos",
+      "descricao": "Estudar css e sass css",
+      "data": "20/04/2025"
+    },
+    {
+      "id": "d1fd",
+      "titulo": "Estudar Dados",
+      "prioridade": "medio",
+      "categoria": "estudos",
+      "descricao": "Estudar dados com Power BI",
+      "data": "24/09/2024"
+    },
+    {
+      "id": "ad98",
+      "titulo": "Comer cuscuz",
+      "prioridade": "baixa",
       "categoria": "saude",
-      "descricao": "comer na Star Açai",
-      "data": "15/07/2024"
+      "descricao": "Alimento",
+      "data": "20/10/2024"
     }
   ]
 }
